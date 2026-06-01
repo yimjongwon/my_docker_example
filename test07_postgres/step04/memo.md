@@ -73,6 +73,6 @@ docker exec -i pg-replica psql -U scott -d scott_db -c "SELECT * FROM member;"
 docker container rm -f $(docker ps -aq)
 docker network rm db-net
 docker volume rm pg-main-volume pg-replica-volume
-
+rm -rf ./replica_snapshot
 ```
 

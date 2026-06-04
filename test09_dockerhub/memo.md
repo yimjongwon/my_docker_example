@@ -20,7 +20,7 @@ docker tag junhanshin/hub-app:1.0 yimjongwon/hub-app:1.0
 # docker hub access key를 준비한다 
 
 # 1. 비밀번호 대신 Access Token(PAT)을 넣어 JWT 임시 통행증 발급
-TOKEN=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "yimjongwon", "password": "dckr_pat_YOUR_REAL_TOKEN"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
+TOKEN=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "yimjongwon", "password": "YOUR_DOCKER_HUB_ACCESS_TOKEN"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
 
 # 2. 통행증(TOKEN)을 이용해 이미지 강제 삭제 슛!
 curl -i -X DELETE -H "Authorization: JWT $TOKEN" https://hub.docker.com/v2/repositories/yimjongwon/hub-app/tags/1.0/

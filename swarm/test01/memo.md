@@ -1,0 +1,25 @@
+### docker swram 클러스터 구성하기
+
+```bash
+# master node 에서 실행
+docker swarm init --advertise-addr 172.16.8.200
+
+#  worker node 로 설정하고 싶은 노드 (rocky01, rocky02) 에서 실행
+docker swarm join --token SWMTKN-1-63vklzjprhi92p4dghpd8j0y1trvd1hu374rc955zlsvbr4fdt-1ous9tqcvfcb2dwhu0bjyfpm7 172.16.8.200:2377
+
+# 클러스터의 상태 조회
+docker node ls
+
+# 클러스터에 테스트로 nginx 컨테이너 3개 배포하기
+docker service create --name my-web --replicas 3 -p 8080:80 nginx
+
+# 서비스 확인
+docker service ls
+
+# 어디에 떠 있는지 확인
+docker service ps my-web
+
+# 서비스 제거
+docker service rm my-web
+
+```
